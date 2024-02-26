@@ -1,0 +1,3 @@
+b5b76930257d5a9af161 code
+http://localhost:4000/api/auth/github
+fa98cc8b8f24fc0898a7cb5929259ea175b29122 secret
