@@ -1,12 +1,17 @@
 import React from "react"
+import "../assets/styles/LoginButton.css"
 
 function LoginButton({ whichSite, whichColor, whichLogo, href }) {
   return (
     <>
-      <div className="login-button" style={{ backgroundColor: { whichColor } }}>
+      <a
+        className="login-button"
+        style={{ backgroundColor: whichColor }}
+        href={href}
+      >
         <img src={whichLogo} />
-        <a href={href}>Login with {whichSite}</a>
-      </div>
+        <div>Login with {whichSite}</div>
+      </a>
     </>
   )
 }
