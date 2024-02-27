@@ -1,6 +1,6 @@
 import React from "react"
 import Component from "./Component"
-import "./App.css"
+import "../assets/styles/App.css"
 
 function naming(string) {
   let newArr = string.split("_")
