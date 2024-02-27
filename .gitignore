@@ -2,7 +2,7 @@
 
 # dependencies
 /backend/node_modules
-/frontend
+/frontend/node_modules
 /backend/src/.env
 
 # testing

@@ -5,19 +5,21 @@ import querystring from "querystring";
 import jwt from "jsonwebtoken";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import dotenv from 'dotenv';
-
+import dotenv from "dotenv";
 
 dotenv.config();
 
-
 const app = express();
 
-const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
-const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
-const JWT_SECRET = process.env.JWT_SECRET;
-const COOKIE_NAME = process.env.COOKIE_NAME;
-// const code=
+// const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID1;
+// const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET1;
+// const JWT_SECRET = process.env.JWT_SECRET1;
+// const COOKIE_NAME = process.env.COOKIE_NAME1;
+
+const GITHUB_CLIENT_ID = "b5b76930257d5a9af161";
+const GITHUB_CLIENT_SECRET = "fa98cc8b8f24fc0898a7cb5929259ea175b29122";
+const JWT_SECRET = "topsecretdonotshare";
+const COOKIE_NAME = "github-jwt";
 
 //Add interface while implementing typescript
 
@@ -30,6 +32,7 @@ app.use(
   })
 );
 
+// takes the code generated after authentication and fetch user record
 async function getUser({ code }) {
   const userToken = await axios
     .post(
@@ -55,9 +58,9 @@ async function getUser({ code }) {
     });
 }
 
-//GET basic github records
+//GET github records for a user
 app.get("/api/auth/github", async (req, res) => {
-  console.log("hi");
+  console.log("test 1");
   const code = req.query.code;
   const path = req.query.path;
 
@@ -75,11 +78,12 @@ app.get("/api/auth/github", async (req, res) => {
   });
 
   // console.log(JSON.stringify(githubuser));
+  console.log("test 2");
 
-  res.redirect(`http://localhost:3000/${path}`);
+  res.redirect(`http://localhost:3000${path}`);
 });
 
-//GET user
+//GET reading cookies and decoding JWT with secret
 app.get("/api/user", (req, res) => {
   const cookie = req.cookies[COOKIE_NAME];
 
