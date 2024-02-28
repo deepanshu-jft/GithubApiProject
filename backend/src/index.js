@@ -6,8 +6,10 @@ import jwt from "jsonwebtoken";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
+import portConfig from '../../frontend/vite.config.js'
 
 dotenv.config();
+const port = portConfig.server.port;
 
 const app = express();
 
@@ -29,7 +31,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: 'http://localhost:5173',
+    origin: `http://localhost:${port}`,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   })
@@ -83,7 +85,7 @@ app.get("/api/auth/github", async (req, res) => {
   // console.log(JSON.stringify(githubuser));
   console.log("test 2");
 
-  res.redirect(`http://localhost:5173${path}`);
+  res.redirect(`http://localhost:${port}${path}`);
 });
 
 //GET reading cookies and decoding JWT with secret
@@ -101,4 +103,5 @@ app.get("/api/user", (req, res) => {
 
 app.listen(4000, () => {
   console.log("server running on 4000");
+  console.log("frontend running on ", port)
 });

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import BuildComponent from "./components/BuildComponent"
 import LoginButton from "./components/LoginButton"
 import githubIcon from "./assets/images/github.png"
+import { Link } from "react-router-dom"
 
 const GITHUB_CLIENT_ID = "b5b76930257d5a9af161"
 const gitHubRedirectURL = "http://localhost:4000/api/auth/github"
@@ -47,7 +48,9 @@ const App = () => {
       ) : (
         <>
           <BuildComponent data={user} />
-          <button className="repo-dashboard">Repository Dashboard</button>
+          <Link to="/dashboard">
+            <button className="repo-dashboard">Repository Dashboard</button>
+          </Link>
         </>
       )}
     </div>
