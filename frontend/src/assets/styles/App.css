@@ -1,13 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap");
 
+* {
+  padding: 0;
+  margin: 0;
+}
 body {
   /* display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh; */
 
-  padding: 0;
-  margin: 0;
   background-color: #17141d;
   color: white;
   font-family: "DM Mono", monospace;
@@ -129,3 +131,41 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
 }
+
+.display-content {
+  /* background: red; */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-card {
+  width: 500px;
+  min-height: 500px;
+  background-color: white;
+  border-radius: 54px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.login-card h2 {
+  margin: 100px 0;
+  color: black;
+  font-size: 40px;
+}
+
+.repo-dashboard {
+  /* border: 200px solid linear-gradient(90deg, #ff8a00, #e52e71); */
+  border-radius: 20px;
+  padding: 10px;
+  text-shadow: 0 0 5px #ffffff;
+  font-size: 40px;
+  cursor: pointer;
+  transition: 1s;
+  background: white;
+}
+/* .repo-dashboard:hover {
+} */
