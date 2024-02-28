@@ -17,7 +17,7 @@ const App = () => {
     ;(async function () {
       const usr = await axios
         .get(`http://localhost:4000/api/user`, {
-          withCredentials: true,   //for cookie
+          withCredentials: true, //for cookie
         })
         .then((res) => res.data)
 
@@ -45,7 +45,10 @@ const App = () => {
           </div>
         </div>
       ) : (
-        <BuildComponent data={user} />
+        <>
+          <BuildComponent data={user} />
+          <button className="repo-dashboard">Repository Dashboard</button>
+        </>
       )}
     </div>
   )
