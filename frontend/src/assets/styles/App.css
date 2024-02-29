@@ -166,6 +166,7 @@ body {
   cursor: pointer;
   transition: 1s;
   background: white;
+  color: black;
 }
 /* .repo-dashboard:hover {
 } */
