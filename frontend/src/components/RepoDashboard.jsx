@@ -1,5 +1,5 @@
 import React from "react"
-import repoJson from "./repoJson"
+import repoJson from "../utils/repoJson"
 import { Link, Outlet } from "react-router-dom"
 
 function RepoDashboard() {

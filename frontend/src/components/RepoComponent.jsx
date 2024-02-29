@@ -1,6 +1,6 @@
 import React from "react"
 import { useParams, Link, Outlet } from "react-router-dom"
-import commitJSON from "./commitJSON"
+import commitJSON from "../utils/commitJSON"
 
 function RepoComponent() {
   let params = useParams()

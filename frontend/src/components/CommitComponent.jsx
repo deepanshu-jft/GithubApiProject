@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import GetFileName from "./getFilename.js"
-import GetCodeDiff from "./getDiffCode.js"
+import GetFileName from "../utils/getFilename.js"
+import GetCodeDiff from "../utils/getDiffCode.js"
 import CommitDifference from "./CommitDifference.jsx"
 
 function CommitComponent() {
