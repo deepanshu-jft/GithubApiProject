@@ -7,7 +7,7 @@ const GITHUB_CLIENT_SECRET = "fa98cc8b8f24fc0898a7cb5929259ea175b29122";
 const JWT_SECRET = "topsecretdonotshare";
 const COOKIE_NAME = "github-jwt";
 
-let accesstoken = null;
+// let accesstoken = null;
 
 const GithubAuthController = {
   async getUserAuth(req, res) {
@@ -21,13 +21,10 @@ const GithubAuthController = {
 
     accesstoken = await UserService.getUserToken({ code });
 
-    // accesstoken=7;
+    // const userinfo = await UserService.getUser(accesstoken);
 
-    const userinfo = await UserService.getUser(accesstoken);
 
-    // const userrepo = await getUserRepos(accesstoken);
-
-    const token = jwt.sign(userinfo, JWT_SECRET);
+    const token = jwt.sign(accesstoken, JWT_SECRET);
 
     res.cookie(COOKIE_NAME, token, {
       httpOnly: true,
@@ -39,10 +36,7 @@ const GithubAuthController = {
 
     res.redirect(`http://localhost:5173${path}`);
   },
-  async getTest(){
-    accesstoken=8;
-  }
 };
 
 export default GithubAuthController;
-export { accesstoken };
+// export { accesstoken };

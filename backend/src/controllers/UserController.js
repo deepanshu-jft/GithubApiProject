@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import GithubAuthController, { accesstoken } from "./AuthContoller.js";
+// import GithubAuthController, { accesstoken } from "./AuthContoller.js";
 import AuthService from "../services/authService.js";
 import RepoService from "../services/repoService.js";
 import express from "express";
@@ -8,12 +8,14 @@ const JWT_SECRET = "topsecretdonotshare";
 const COOKIE_NAME = "github-jwt";
 
 const UserController = {
-  getUser(req, res) {
+  async getUser(req, res) {
     const cookie = req.cookies[COOKIE_NAME];
+    const accesstoken = jwt.verify(cookie, JWT_SECRET);
 
     try {
-      const decode = jwt.verify(cookie, JWT_SECRET);
-      return res.send(decode);
+      
+      const user= await AuthService.getUser(accesstoken);
+      return res.send(user);
     } catch (e) {
       console.log("wrong jwt secret OR user not found");
       res.send(null);
@@ -21,7 +23,9 @@ const UserController = {
   },
 
   async getRepos(req, res) {
-    // const cookie = req.cookies[COOKIE_NAME];
+    // const accesstoken=req.query.accesstoken;
+    const cookie = req.cookies[COOKIE_NAME];
+    const accesstoken = jwt.verify(cookie, JWT_SECRET);
     if (accesstoken == null) {
       console.log("accesstoken is null");
     }
@@ -36,11 +40,13 @@ const UserController = {
   },
 
   async getCommits(req, res) {
+    const cookie = req.cookies[COOKIE_NAME];
+    const accesstoken = jwt.verify(cookie, JWT_SECRET);
     const username = req.query.username;
     const reponame = req.query.reponame;
 
     try {
-      const commits = await RepoService.getRepoCommits(username, reponame);
+      const commits = await RepoService.getRepoCommits(accesstoken, username, reponame);
       res.status(200).send(commits);
     } catch (e) {
       console.log("error in user controller getcommit");
@@ -49,6 +55,8 @@ const UserController = {
   },
 
   async getOldAndNewCode(req, res) {
+    const cookie = req.cookies[COOKIE_NAME];
+    const accesstoken = jwt.verify(cookie, JWT_SECRET);
     // console.log("yoyo");
     // console.log(req.query);
     // res.status(201).send("hi");
@@ -62,12 +70,14 @@ const UserController = {
 
     try {
       const oldcode = await RepoService.fetchFileContent(
+        accesstoken,
         username,
         reponame,
         commit_sha + "^",
         filename
       );
-      const newCode = await RepoService.getCode(
+      const newCode = await RepoService.fetchFileContent(
+        accesstoken,
         username,
         reponame,
         commit_sha,

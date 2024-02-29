@@ -1,6 +1,8 @@
 import axios from "axios";
 import querystring from "querystring";
 
+
+
 const GITHUB_CLIENT_ID = "b5b76930257d5a9af161";
 const GITHUB_CLIENT_SECRET = "fa98cc8b8f24fc0898a7cb5929259ea175b29122";
 const JWT_SECRET = "topsecretdonotshare";
@@ -16,7 +18,7 @@ const AuthService = {
 
       .catch((error) => {
         // throw error;
-        console.log("error")
+        console.log("error");
       });
 
     const decoded = querystring.parse(userToken);
@@ -32,7 +34,7 @@ const AuthService = {
       .then((res) => res.data)
       .catch((error) => {
         console.log("error1");
-        console.error("error in fetching user");
+        // console.error("error in fetching user");
         // throw error;
       });
     return user;
@@ -40,7 +42,7 @@ const AuthService = {
 
   async getUserRepos(accesstoken) {
     const repos = await axios
-      .get("https://api.github.com/user/repos", {
+      .get(`${process.env.GITHUB_URL}/orgs/anwesh-jft/repos`, {
         headers: { Authorization: `Bearer ${accesstoken}` },
       })
       .then((res) => res.data)
