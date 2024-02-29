@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import GetFileName from "./getFilename.js"
 import GetCodeDiff from "./getDiffCode.js"
+import CommitDifference from "./CommitDifference.jsx"
 
 function CommitComponent() {
   const params = useParams()
@@ -21,7 +22,11 @@ function CommitComponent() {
 
     fetchData()
   }, [params.commitId])
-  return <div>CommitComponent: {filename}</div>
+  return (
+    <div className="p-12 w-96">
+      <CommitDifference />
+    </div>
+  )
 }
 
 export default CommitComponent
