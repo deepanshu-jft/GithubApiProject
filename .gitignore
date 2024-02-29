@@ -1,6 +1,6 @@
 # dependencies
 /backend/node_modules
-/frontend
+frontend/
 /backend/src/.env
 
 # testing
