@@ -16,14 +16,22 @@ const App = () => {
 
   useEffect(() => {
     (async function () {
-      const usr = await axios
+      axios
         .get(`http://localhost:4000/api/user`, {
           withCredentials: true, //for cookie
         })
-        .then((res) => res.data)
+        .then((res) => {
+          setUser(res.data)
+
+          console.log('======================',res.data)
+          axios
+          .get("http://localhost:4000/api/user/repos", {
+          })
+          .then((res) => res.data)
+        })
 
       
-      setUser(usr)
+     
     })()
   }, [])
  

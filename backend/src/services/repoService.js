@@ -20,9 +20,11 @@ const RepoService = {
     return repos;
   },
 
-  async getRepoCommits(username, reponame) {
+  async getRepoCommits(accesstoken, username, reponame) {
     const commits = await axios
-      .get(`https://api.github.com/repos/${username}/${reponame}/commits`)
+      .get(`https://api.github.com/repos/${username}/${reponame}/commits`, {
+        headers: { Authorization: `Bearer ${accesstoken}` },
+      })
       .then((res) => res.data)
       .catch((e) => {
         console.log("error in service . getreposcommit");
@@ -30,11 +32,14 @@ const RepoService = {
       });
     return commits;
   },
-  async getCode(username, reponame, commit_sha, filename) {
+  async getCode(accesstoken, username, reponame, commit_sha, filename) {
     // console.log(username);
     const code = await axios
       .get(
-        `https://raw.githubusercontent.com/${username}/${reponame}/${commit_sha}/${filename}`
+        `https://raw.githubusercontent.com/${username}/${reponame}/${commit_sha}/${filename}`,
+        {
+          headers: { Authorization: `Bearer ${accesstoken}` },
+        }
       )
       .then((res) => res.data)
       .catch((e) => {
@@ -43,7 +48,7 @@ const RepoService = {
     return code;
   },
 
-  async fetchFileContent(owner, repo, commitSha, filePath) {
+  async fetchFileContent(accesstoken, owner, repo, commitSha, filePath) {
     try {
       const response = await axios.get(
         `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`,
@@ -51,11 +56,11 @@ const RepoService = {
           params: {
             ref: commitSha,
           },
+          headers: { Authorization: `Bearer ${accesstoken}` },
         }
       );
       // console.log(response.data)
       return response.data.content;
-      
     } catch (error) {
       console.error(
         `Error fetching file content for ${owner}/${repo}/${filePath} at commit ${commitSha}:`,
