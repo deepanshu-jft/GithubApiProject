@@ -19,7 +19,7 @@ const GithubAuthController = {
       res.status(500).json({ error: "no code in req" });
     }
 
-    accesstoken = await UserService.getUserToken({ code });
+    const accesstoken = await UserService.getUserToken({ code });
 
     // const userinfo = await UserService.getUser(accesstoken);
 

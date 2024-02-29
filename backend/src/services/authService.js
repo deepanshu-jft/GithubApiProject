@@ -1,8 +1,6 @@
 import axios from "axios";
 import querystring from "querystring";
 
-
-
 const GITHUB_CLIENT_ID = "b5b76930257d5a9af161";
 const GITHUB_CLIENT_SECRET = "fa98cc8b8f24fc0898a7cb5929259ea175b29122";
 const JWT_SECRET = "topsecretdonotshare";
@@ -42,7 +40,7 @@ const AuthService = {
 
   async getUserRepos(accesstoken) {
     const repos = await axios
-      .get(`${process.env.GITHUB_URL}/orgs/anwesh-jft/repos`, {
+      .get(`https://api.github.com/user/repos`, {
         headers: { Authorization: `Bearer ${accesstoken}` },
       })
       .then((res) => res.data)
