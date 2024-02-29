@@ -15,16 +15,19 @@ const App = () => {
   const [user, setUser] = useState()
 
   useEffect(() => {
-    ;(async function () {
+    (async function () {
       const usr = await axios
         .get(`http://localhost:4000/api/user`, {
           withCredentials: true, //for cookie
         })
         .then((res) => res.data)
 
+      
       setUser(usr)
     })()
   }, [])
+ 
+  
 
   return (
     <div className="App">
