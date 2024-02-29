@@ -16,7 +16,7 @@ const app = express();
 // const JWT_SECRET = process.env.JWT_SECRET1;
 // const COOKIE_NAME = process.env.COOKIE_NAME1;
 // const GITHUB_URL=process.env.GITHUB_URL
-console.log(GITHUB_CLIENT_ID);
+// console.log(GITHUB_CLIENT_ID);
 const GITHUB_CLIENT_ID = "b5b76930257d5a9af161";
 const GITHUB_CLIENT_SECRET = "fa98cc8b8f24fc0898a7cb5929259ea175b29122";
 const JWT_SECRET = "topsecretdonotshare";
