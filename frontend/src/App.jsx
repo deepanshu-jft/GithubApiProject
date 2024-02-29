@@ -1,3 +1,5 @@
+//anwesh
+
 import axios from "axios"
 import "./assets/styles/App.css"
 import { useState, useEffect } from "react"
@@ -13,17 +15,22 @@ const GITHUB_URL = `https://github.com/login/oauth/authorize?client_id=${GITHUB_
 const App = () => {
   const [user, setUser] = useState()
 
+  
+
   useEffect(() => {
-    ;(async function () {
+    (async function () {
       const usr = await axios
         .get(`http://localhost:4000/api/user`, {
           withCredentials: true, //for cookie
         })
         .then((res) => res.data)
 
+      
       setUser(usr)
     })()
   }, [])
+ 
+  
 
   return (
     <div className="App">
@@ -47,6 +54,7 @@ const App = () => {
       ) : (
         <>
           <BuildComponent data={user} />
+          {}
           <button className="repo-dashboard">Repository Dashboard</button>
         </>
       )}
