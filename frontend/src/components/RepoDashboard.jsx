@@ -5,8 +5,8 @@ import { Link, Outlet } from "react-router-dom"
 function RepoDashboard() {
   return (
     <>
-      <div className="flex gap-2">
-        <div className="repo-list min-h-screen w-96 bg-white p-12 flex flex-col gap-4">
+      <div className="flex">
+        <div className="repo-list min-h-screen w-96 bg-white p-12 flex flex-col gap-4 select-none">
           {repoJson.map((index) => (
             <Link
               key={index.name}

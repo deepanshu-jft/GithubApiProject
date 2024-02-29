@@ -6,6 +6,8 @@ import "./assets/styles/index.css"
 import App from "./App.jsx"
 import RepoDashboard from "./components/RepoDashboard.jsx"
 import RepoComponent from "./components/RepoComponent.jsx"
+import CommitComponent from "./components/CommitComponent.jsx"
+import CommitDifference from "./components/CommitDifference.jsx"
 
 const router = createBrowserRouter([
   {
@@ -20,9 +22,19 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/:repoId",
         element: <RepoComponent />,
+        children: [
+          {
+            path: "/dashboard/:repoId/:commitId",
+            element: <CommitComponent />,
+          },
+        ],
       },
     ],
   },
+  {
+    path: "/difference",
+    element: <CommitDifference />
+  }
 ])
 
 ReactDOM.createRoot(document.getElementById("root")).render(
