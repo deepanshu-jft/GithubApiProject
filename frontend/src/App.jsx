@@ -15,36 +15,19 @@ const App = () => {
   const [user, setUser] = useState()
 
   useEffect(() => {
-    (async function () {
-      axios
+    ;(async function () {
+      const usr = await axios
         .get(`http://localhost:4000/api/user`, {
           withCredentials: true, //for cookie
         })
-        .then((res) => {
-          setUser(res.data)
-
-          console.log('======================',res.data)
-          axios
-          .get("http://localhost:4000/api/user/repos", {
-          })
-          .then((res) => res.data)
-        })
-
-      
-     
+        .then((res) => res.data)
+      setUser(usr)
     })()
   }, [])
- 
-  
 
   return (
     <div className="App">
       {!user ? (
-        // <a
-        //   href={`https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${gitHubRedirectURL}?path=${path}&scope=user:email`}
-        // >
-        //   Login with Github
-        // </a>
         <div className="display-content">
           <div className="login-card">
             <h2>Authenticate With</h2>
