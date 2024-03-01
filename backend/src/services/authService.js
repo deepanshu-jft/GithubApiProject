@@ -21,10 +21,12 @@ const AuthService = {
 
     const decoded = querystring.parse(userToken);
     const accesstoken = decoded.access_token;
+    console.log(accesstoken + " hi2");
     return accesstoken;
   },
 
   async getUser(accesstoken) {
+    console.log('hi5 '+ accesstoken);
     const user = await axios
       .get("https://api.github.com/user", {
         headers: { Authorization: `Bearer ${accesstoken}` },
