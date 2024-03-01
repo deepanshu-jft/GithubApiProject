@@ -59,6 +59,27 @@ const UserController = {
     }
   },
 
+  async getFilename(req, res) {
+    try {
+      const cookie = req.cookies[COOKIE_NAME];
+      const accesstoken = jwt.verify(cookie, JWT_SECRET);
+      const username = req.query.username;
+      const reponame = req.query.reponame;
+      const commit_sha=req.query.commitsha;
+
+      const filename = await RepoService.getFilename(
+        accesstoken,
+        username,
+        reponame,
+        commit_sha
+      );
+      res.status(200).send(filename);
+    } catch (e) {
+      console.log("error in user controller getfilename");
+      res.send(null);
+    }
+  },  
+
   async getOldAndNewCode(req, res) {
     try {
       const cookie = req.cookies[COOKIE_NAME];
