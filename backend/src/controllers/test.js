@@ -83,3 +83,6 @@
 
 
 // // // https://github.com/Deepanshu-Kaushik/blog-preview-card/commit/7456c15a76fa0ef7929cc7296ab9d9535585ede0
+
+
+console.log(process.env.GITHUB_URL)

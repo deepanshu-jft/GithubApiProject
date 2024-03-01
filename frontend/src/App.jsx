@@ -19,30 +19,7 @@ const GITHUB_URL = `https://github.com/login/oauth/authorize?client_id=${GITHUB_
 const App = () => {
   const [token, setToken] = useState()
   const [user, setUser] =useState()
-  // let user=0
-
-  // const getUsr = async function () {
-  //   try {
-  //     const response = await axios.get(`http://localhost:4000/api/user`, {
-  //       withCredentials: true, //for cookie
-  //     });
-  //     const userData = response.data;
-  //     return userData;
-  //   } catch (error) {
-  //     // Handle errors here
-  //     console.log("Error fetching user data:===============");
-  //     return null;
-  //   }
-  // }
-  // const getUsr= async function () {
-  //   const usr = await axios
-  //     .get(`http://localhost:4000/api/user`, {
-  //       withCredentials: true, //for cookie
-  //     })
-  //     .then((res) => res.data)
-  //   setUser(usr)
-  // }
-
+  
   useEffect(() => {
     (async function () {
       const params = {
@@ -60,7 +37,7 @@ const App = () => {
       setToken(tkn)
 
       const usr = await axios
-        .get(`http://localhost:4000/api/user/repos/commits/codes`, {
+        .get(`http://localhost:4000/api/user/repos/commits/sha`, {
           withCredentials: true, //for cookie
           params: params,
         })
