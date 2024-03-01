@@ -24,9 +24,9 @@ const GithubAuthController = {
     // const userinfo = await UserService.getUser(accesstoken);
 
 
-    const token = jwt.sign(accesstoken, JWT_SECRET);
+    // const token = jwt.sign(accesstoken, JWT_SECRET);   //apply jwt
 
-    res.cookie(COOKIE_NAME, token, {
+    res.cookie(COOKIE_NAME, accesstoken, {
       httpOnly: true,
       domain: "localhost",
     });

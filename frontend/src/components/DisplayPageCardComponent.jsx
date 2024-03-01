@@ -1,6 +1,6 @@
 import React from "react"
 
-function Component({ data, displayData }) {
+function DisplayPageCardComponent({ data, displayData }) {
   return (
     <>
         {data[displayData] !== data["created_at"]
@@ -10,4 +10,4 @@ function Component({ data, displayData }) {
   )
 }
 
-export default Component
+export default DisplayPageCardComponent

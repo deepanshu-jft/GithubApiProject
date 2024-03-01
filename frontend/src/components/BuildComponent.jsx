@@ -1,6 +1,6 @@
 import React from "react"
-import Component from "./Component"
 import "../assets/styles/App.css"
+import DisplayPageCardComponent from "./DisplayPageCardComponent"
 
 function naming(string) {
   let newArr = string.split("_")
@@ -28,7 +28,7 @@ function BuildComponent({ data }) {
     <>
       <h1 className="heading">
         <span className="welcome">Welcome</span>
-        <Component data={data} displayData="name" />
+        <DisplayPageCardComponent data={data} displayData="name" />
       </h1>
       <div className="container">
         {arr.map((displayData, index) => (
@@ -36,7 +36,7 @@ function BuildComponent({ data }) {
             <div className="card-header">
               <div className="title">{naming(displayData)}</div>
               <div className="content">
-                <Component data={data} displayData={displayData} />
+                <DisplayPageCardComponent data={data} displayData={displayData} />
               </div>
             </div>
           </div>
