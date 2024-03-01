@@ -12,8 +12,6 @@ const path = "/"
 const GITHUB_URL = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${gitHubRedirectURL}?path=${path}&scope=user:email`
 
 const App = () => {
-  const [accesstoken, setAccesstoken] = useState()
-
   const [token, setToken] = useState()
   const [user, setUser] =useState()
   
@@ -34,7 +32,7 @@ const App = () => {
       setToken(tkn)
 
       const usr = await axios
-        .get(`http://localhost:4000/api/user/repos/commits/codes`, {
+        .get(`http://localhost:4000/api/user/`, {
           withCredentials: true, //for cookie
           params: params,
         })
