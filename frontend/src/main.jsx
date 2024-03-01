@@ -16,15 +16,15 @@ const router = createBrowserRouter([
     errorElement: <div>404 Not Found</div>,
   },
   {
-    path: "/dashboard",
+    path: "/:userName/dashboard/",
     element: <RepoDashboard />,
     children: [
       {
-        path: "/dashboard/:repoId",
+        path: "/:userName/dashboard/:repoName",
         element: <RepoComponent />,
         children: [
           {
-            path: "/dashboard/:repoId/:commitId",
+            path: "/:userName/dashboard/:repoName/",
             element: <CommitComponent />,
           },
         ],
@@ -33,8 +33,8 @@ const router = createBrowserRouter([
   },
   {
     path: "/difference",
-    element: <CommitDifference />
-  }
+    element: <CommitDifference />,
+  },
 ])
 
 ReactDOM.createRoot(document.getElementById("root")).render(

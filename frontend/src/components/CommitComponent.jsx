@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import GetFileName from "../utils/getFilename.js"
-import GetCodeDiff from "../utils/getDiffCode.js"
-import CommitDifference from "./CommitDifference.jsx"
+import GetFileName from "../utils/getFilename"
+import GetCodeDiff from "../utils/getDiffCode"
+import CommitDifference from "./CommitDifference"
 
 function CommitComponent() {
   const params = useParams()
   const [filename, setFilename] = useState(null)
-  const [codeDiff, setCodeDiff] = useState(null)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,6 +21,7 @@ function CommitComponent() {
 
     fetchData()
   }, [params.commitId])
+  
   return (
     <div className="p-12 w-96">
       <CommitDifference />

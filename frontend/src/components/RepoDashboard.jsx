@@ -1,8 +1,9 @@
 import React from "react"
+import { Link, Outlet, useParams } from "react-router-dom"
 import repoJson from "../utils/repoJson"
-import { Link, Outlet } from "react-router-dom"
 
 function RepoDashboard() {
+  const params = useParams()
   return (
     <>
       <div className="flex">
@@ -11,7 +12,7 @@ function RepoDashboard() {
             <Link
               key={index.name}
               className="repo-component flex justify-center items-center h-12 bg-black rounded-lg cursor-pointer"
-              to={`/dashboard/${index.name}`}
+              to={`/${params.userName}/dashboard/${index.name}`}
             >
               {index.name}
             </Link>

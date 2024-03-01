@@ -64,6 +64,7 @@ const RepoService = {
 
   async fetchFileContent(accesstoken, owner, repo, commitSha, filePath) {
     try {
+      console.log('hi123    ' + commitSha);
       const response = await axios.get(
         `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`,
         {

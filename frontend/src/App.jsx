@@ -13,17 +13,10 @@ const GITHUB_URL = `https://github.com/login/oauth/authorize?client_id=${GITHUB_
 
 const App = () => {
   const [token, setToken] = useState()
-  const [user, setUser] =useState()
-  
+  const [user, setUser] = useState()
+
   useEffect(() => {
     (async function () {
-      const params = {
-        username: "Deepanshu-Kaushik",
-        filename: "index.html",
-        reponame: "blog-preview-card",
-        commitsha: "7456c15a76fa0ef7929cc7296ab9d9535585ede^",
-      };
-      
       const tkn = await axios
         .get(`http://localhost:4000/api/auth/github/token`, {
           withCredentials: true, //for cookie
@@ -32,20 +25,17 @@ const App = () => {
       setToken(tkn)
 
       const usr = await axios
-        .get(`http://localhost:4000/api/user/`, {
+        .get(`http://localhost:4000/api/user`, {
           withCredentials: true, //for cookie
-          params: params,
         })
         .then((res) => res.data)
       setUser(usr)
-
-
     })()
   }, [])
-
+  
   return (
     <div className="App">
-      {(!token || !user)? (                               //ye error tha
+      {!token || !user ? ( //ye error tha
         <div className="display-content">
           <div className="login-card">
             <h2>Authenticate With</h2>
@@ -60,7 +50,7 @@ const App = () => {
       ) : (
         <>
           <BuildComponent data={user} />
-          <Link to="/dashboard">
+          <Link to={`/${user.login}/dashboard`}>
             <button className="repo-dashboard">Repository Dashboard</button>
           </Link>
         </>

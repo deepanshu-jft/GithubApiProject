@@ -65,7 +65,7 @@ const UserController = {
       const accesstoken = jwt.verify(cookie, JWT_SECRET);
       const username = req.query.username;
       const reponame = req.query.reponame;
-      const commit_sha=req.query.commitsha;
+      const commit_sha = req.query.commitsha;
 
       const filename = await RepoService.getFilename(
         accesstoken,
@@ -78,7 +78,7 @@ const UserController = {
       console.log("error in user controller getfilename");
       res.send(null);
     }
-  },  
+  },
 
   async getOldAndNewCode(req, res) {
     try {
@@ -93,13 +93,15 @@ const UserController = {
       const filename = req.query.filename;
       const reponame = req.query.reponame;
 
-      // console.log(username + "  hi 1");
+      console.log("hi 1 " +commit_sha);
+      const oldcommitsha= commit_sha+'^';
+      console.log('h2  ' + oldcommitsha);
 
       const oldcode = await RepoService.fetchFileContent(
         accesstoken,
         username,
         reponame,
-        commit_sha + "^",
+        oldcommitsha,
         filename
       );
       const newCode = await RepoService.fetchFileContent(

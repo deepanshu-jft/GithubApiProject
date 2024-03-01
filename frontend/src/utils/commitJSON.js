@@ -1,12 +1,22 @@
-async function fetchData() {
+import axios from "axios";
+
+async function fetchData(userName, repoName) {
   try {
-    let api = await fetch('https://api.github.com/repos/Deepanshu-Kaushik/blog-preview-card/commits');
-    if (!api.ok) throw new Error('error');
-    let data = await api.json();
-    return data;
+    const params = {
+      username: userName,
+      reponame: repoName,
+    }
+    let api = await axios.get('http://localhost:4000/api/user/repos/commits', {
+      withCredentials: true,
+      params: params
+    })
+    return api.data;
   } catch (error) {
     console.error('Error: ', error.message)
   }
 }
 
-export default await fetchData();
+export default async function (userName, repoName) {
+  let commitList = await fetchData(userName, repoName);
+  return commitList;
+}
