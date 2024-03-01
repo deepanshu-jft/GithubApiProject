@@ -32,6 +32,20 @@ const RepoService = {
       });
     return commits;
   },
+
+  async getFilename(accesstoken, username, reponame, commit_sha) {
+    const filename = await axios
+      .get(`https://api.github.com/repos/${username}/${reponame}/commits/${commit_sha}`, {
+        headers: { Authorization: `Bearer ${accesstoken}` },
+      })
+      .then((res) => res.data)
+      .catch((e) => {
+        console.log("error in service . getfilename");
+        // throw error;
+      });
+    return filename;
+  },
+
   async getCode(accesstoken, username, reponame, commit_sha, filename) {
     // console.log(username);
     const code = await axios
