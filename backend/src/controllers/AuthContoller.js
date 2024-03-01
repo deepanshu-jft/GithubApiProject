@@ -20,11 +20,13 @@ const GithubAuthController = {
     }
 
     const accesstoken = await UserService.getUserToken({ code });
+    console.log(accesstoken +' hi1')
 
     // const userinfo = await UserService.getUser(accesstoken);
 
 
     const token = jwt.sign(accesstoken, JWT_SECRET);
+    
 
     res.cookie(COOKIE_NAME, token, {
       httpOnly: true,
@@ -36,6 +38,12 @@ const GithubAuthController = {
 
     res.redirect(`http://localhost:5173${path}`);
   },
+  
+  async getCookieToken(req, res){
+    const cookie = await req.cookies[COOKIE_NAME];
+    console.log(cookie);
+    res.status(200).send(cookie)
+  }
 };
 
 export default GithubAuthController;
