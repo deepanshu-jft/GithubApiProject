@@ -1,5 +1,3 @@
-// anwesh hi1
-
 import axios from "axios"
 import "./assets/styles/App.css"
 import { useState, useEffect } from "react"
@@ -13,13 +11,12 @@ const gitHubRedirectURL = "http://localhost:4000/api/auth/github"
 const path = "/"
 const GITHUB_URL = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${gitHubRedirectURL}?path=${path}&scope=user:email`
 
-
-
-
 const App = () => {
+  const [accesstoken, setAccesstoken] = useState()
+
   const [token, setToken] = useState()
   const [user, setUser] =useState()
-
+  
   useEffect(() => {
     (async function () {
       const params = {
@@ -36,25 +33,9 @@ const App = () => {
         .then((res) => res.data)
       setToken(tkn)
 
-    (async function () {
-      const params = {
-        username: "Deepanshu-Kaushik",
-        filename: "index.html",
-        reponame: "blog-preview-card",
-        commitsha: "7456c15a76fa0ef7929cc7296ab9d9535585ede^",
-      };
-      
-      const tkn = await axios
-        .get(`http://localhost:4000/api/auth/github/token`, {
-          withCredentials: true, //for cookie
-        })
-        .then((res) => res.data)
-      setToken(tkn)
-
       const usr = await axios
-        .get(`http://localhost:4000/api/user/`, {
+        .get(`http://localhost:4000/api/user/repos/commits/codes`, {
           withCredentials: true, //for cookie
-          params: params,
           params: params,
         })
         .then((res) => res.data)
@@ -66,7 +47,6 @@ const App = () => {
 
   return (
     <div className="App">
-      {(!token || !user)? (                               //ye error tha
       {(!token || !user)? (                               //ye error tha
         <div className="display-content">
           <div className="login-card">
@@ -81,12 +61,10 @@ const App = () => {
         </div>
       ) : (
         <>
-          {/* <BuildComponent data={user} /> */}
-          {console.log(user)}
-          <h1>hi</h1>
-          {/* <Link to="/dashboard">
+          <BuildComponent data={user} />
+          <Link to="/dashboard">
             <button className="repo-dashboard">Repository Dashboard</button>
-          </Link> */}
+          </Link>
         </>
       )}
     </div>
