@@ -1,3 +1,5 @@
+// anwesh hi1
+
 import axios from "axios"
 import "./assets/styles/App.css"
 import { useState, useEffect } from "react"
@@ -11,23 +13,67 @@ const gitHubRedirectURL = "http://localhost:4000/api/auth/github"
 const path = "/"
 const GITHUB_URL = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${gitHubRedirectURL}?path=${path}&scope=user:email`
 
+
+
+
 const App = () => {
-  const [user, setUser] = useState()
+  const [token, setToken] = useState()
+  const [user, setUser] =useState()
+  // let user=0
+
+  // const getUsr = async function () {
+  //   try {
+  //     const response = await axios.get(`http://localhost:4000/api/user`, {
+  //       withCredentials: true, //for cookie
+  //     });
+  //     const userData = response.data;
+  //     return userData;
+  //   } catch (error) {
+  //     // Handle errors here
+  //     console.log("Error fetching user data:===============");
+  //     return null;
+  //   }
+  // }
+  // const getUsr= async function () {
+  //   const usr = await axios
+  //     .get(`http://localhost:4000/api/user`, {
+  //       withCredentials: true, //for cookie
+  //     })
+  //     .then((res) => res.data)
+  //   setUser(usr)
+  // }
 
   useEffect(() => {
-    ;(async function () {
-      const usr = await axios
-        .get(`http://localhost:4000/api/user`, {
+    (async function () {
+      const params = {
+        username: "Deepanshu-Kaushik",
+        filename: "index.html",
+        reponame: "blog-preview-card",
+        commitsha: "7456c15a76fa0ef7929cc7296ab9d9535585ede^",
+      };
+      
+      const tkn = await axios
+        .get(`http://localhost:4000/api/auth/github/token`, {
           withCredentials: true, //for cookie
         })
         .then((res) => res.data)
+      setToken(tkn)
+
+      const usr = await axios
+        .get(`http://localhost:4000/api/user/repos/commits/codes`, {
+          withCredentials: true, //for cookie
+          params: params,
+        })
+        .then((res) => res.data)
       setUser(usr)
+
+
     })()
   }, [])
 
   return (
     <div className="App">
-      {!user ? (
+      {(!token || !user)? (                               //ye error tha
         <div className="display-content">
           <div className="login-card">
             <h2>Authenticate With</h2>
@@ -41,14 +87,16 @@ const App = () => {
         </div>
       ) : (
         <>
-          <BuildComponent data={user} />
-          <Link to="/dashboard">
+          {/* <BuildComponent data={user} /> */}
+          {console.log(user)}
+          <h1>hi</h1>
+          {/* <Link to="/dashboard">
             <button className="repo-dashboard">Repository Dashboard</button>
-          </Link>
+          </Link> */}
         </>
       )}
     </div>
   )
 }
 
-export default App
+export default App;
