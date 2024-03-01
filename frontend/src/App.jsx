@@ -1,5 +1,3 @@
-// anwesh hi1
-
 import axios from "axios"
 import "./assets/styles/App.css"
 import { useState, useEffect } from "react"
@@ -12,9 +10,6 @@ const GITHUB_CLIENT_ID = "b5b76930257d5a9af161"
 const gitHubRedirectURL = "http://localhost:4000/api/auth/github"
 const path = "/"
 const GITHUB_URL = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${gitHubRedirectURL}?path=${path}&scope=user:email`
-
-
-
 
 const App = () => {
   const [token, setToken] = useState()
@@ -37,7 +32,7 @@ const App = () => {
       setToken(tkn)
 
       const usr = await axios
-        .get(`http://localhost:4000/api/user/repos/commits/sha`, {
+        .get(`http://localhost:4000/api/user/`, {
           withCredentials: true, //for cookie
           params: params,
         })
@@ -64,16 +59,14 @@ const App = () => {
         </div>
       ) : (
         <>
-          {/* <BuildComponent data={user} /> */}
-          {console.log(user)}
-          <h1>hi</h1>
-          {/* <Link to="/dashboard">
+          <BuildComponent data={user} />
+          <Link to="/dashboard">
             <button className="repo-dashboard">Repository Dashboard</button>
-          </Link> */}
+          </Link>
         </>
       )}
     </div>
   )
 }
 
-export default App;
+export default App
