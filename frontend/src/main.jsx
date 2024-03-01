@@ -7,7 +7,7 @@ import App from "./App.jsx"
 import RepoDashboard from "./components/RepoDashboard.jsx"
 import RepoComponent from "./components/RepoComponent.jsx"
 import CommitComponent from "./components/CommitComponent.jsx"
-import CommitDifference from "./components/CommitDifference.jsx"
+import FilenameComponent from "./components/FilenameComponent.jsx"
 
 const router = createBrowserRouter([
   {
@@ -33,7 +33,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/difference",
-    element: <CommitDifference />,
+    element: <FilenameComponent />,
   },
 ])
 

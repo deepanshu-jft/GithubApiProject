@@ -21,9 +21,9 @@ function CommitComponent() {
 
     fetchData()
   }, [params.commitId])
-  
+
   return (
-    <div className="p-12 w-96">
+    <div className="p-12 w-96 text-black">
       <CommitDifference />
     </div>
   )
