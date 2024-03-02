@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "axios"
 
 async function fetchData(userName, repoName) {
   try {
@@ -6,17 +6,17 @@ async function fetchData(userName, repoName) {
       username: userName,
       reponame: repoName,
     }
-    let api = await axios.get('http://localhost:4000/api/user/repos/commits', {
+    let api = await axios.get("http://localhost:4000/api/user/repos/commits", {
       withCredentials: true,
-      params: params
+      params: params,
     })
-    return api.data;
+    return api.data
   } catch (error) {
-    console.error('Error: ', error.message)
+    console.error("Error: ", error.message)
   }
 }
 
 export default async function (userName, repoName) {
-  let commitList = await fetchData(userName, repoName);
-  return commitList;
+  let commitList = await fetchData(userName, repoName)
+  return commitList
 }

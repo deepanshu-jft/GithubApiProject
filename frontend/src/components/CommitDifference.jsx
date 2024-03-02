@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react"
 import ReactDiffViewer from "react-diff-viewer"
 import getDiffCode from "../utils/getDiffCode"
+import { useParams } from "react-router-dom"
 
 function CommitDifference() {
+  const params = useParams();
   const [oldnewcode, setOldnewcode] = useState(null)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const oldnewcode = await getDiffCode("sadad")
+        const oldnewcode = await getDiffCode(params)
         setOldnewcode(oldnewcode)
-        console.log(oldnewcode.oldcode) // TEMP CODE
-        console.log(oldnewcode.newcode) // TEMP CODE
       } catch (error) {
         console.error("Error fetching oldnewcode:", error)
       }
     }
     fetchData()
-  }, ["params.userName, params.repoName"])
+  }, [params])
 
   return (
     <>

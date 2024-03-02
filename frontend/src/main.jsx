@@ -6,8 +6,9 @@ import "./assets/styles/index.css"
 import App from "./App.jsx"
 import RepoDashboard from "./components/RepoDashboard.jsx"
 import RepoComponent from "./components/RepoComponent.jsx"
-import CommitComponent from "./components/CommitComponent.jsx"
-import FilenameComponent from "./components/FilenameComponent.jsx"
+import FilenameDashboard from "./components/FilenameDashboard"
+// import FilenameComponent from "./components/FilenameComponent.jsx"
+import CommitDifference from "./components/CommitDifference.jsx"
 
 const router = createBrowserRouter([
   {
@@ -24,16 +25,18 @@ const router = createBrowserRouter([
         element: <RepoComponent />,
         children: [
           {
-            path: "/:userName/dashboard/:repoName/",
-            element: <CommitComponent />,
+            path: "/:userName/dashboard/:repoName/:commitSha",
+            element: <FilenameDashboard />,
+            children: [
+              {
+                path: "/:userName/dashboard/:repoName/:commitSha/:fileName",
+                element: <CommitDifference />,
+              },
+            ],
           },
         ],
       },
     ],
-  },
-  {
-    path: "/difference",
-    element: <FilenameComponent />,
   },
 ])
 

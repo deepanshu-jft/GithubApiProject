@@ -1,24 +1,26 @@
-import axios from "axios";
+import axios from "axios"
 
-async function exp(shaa) {
+async function fetchData(userName, repoName, commitSha) {
   try {
     const params = {
-      username: 'Deepanshu-Kaushik',
-      reponame: 'blog-preview-card',
-      commitsha: '7456c15a76fa0ef7929cc7296ab9d9535585ede0',
+      username: userName,
+      reponame: repoName,
+      commitsha: commitSha,
     }
-    let api = await axios.get('http://localhost:4000/api/user/repos/commits/sha',
-    {
-      withCredentials: true,
-      params: params
-    });
-    return api.data
+    let api = await axios.get(
+      "http://localhost:4000/api/user/repos/commits/sha",
+      {
+        withCredentials: true,
+        params: params,
+      }
+    )
+    return api.data.files
   } catch (error) {
-    console.error('error: ', error.message);
+    console.error("error: ", error.message)
   }
 }
 
-export default async function (sha) {
-  let filename = await exp(sha);
-  return filename;
+export default async function (userName, repoName, commitSha) {
+  let filename = await fetchData(userName, repoName, commitSha)
+  return filename
 }
