@@ -16,7 +16,7 @@ const App = () => {
   const [user, setUser] = useState()
 
   useEffect(() => {
-    (async function () {
+    ;(async function () {
       const tkn = await axios
         .get(`http://localhost:4000/api/auth/github/token`, {
           withCredentials: true, //for cookie
@@ -32,7 +32,7 @@ const App = () => {
       setUser(usr)
     })()
   }, [])
-  
+
   return (
     <div className="App">
       {!token || !user ? ( //ye error tha

@@ -4,7 +4,7 @@ import getDiffCode from "../utils/getDiffCode"
 import { useParams } from "react-router-dom"
 
 function CommitDifference() {
-  const params = useParams();
+  const params = useParams()
   const [oldnewcode, setOldnewcode] = useState(null)
 
   useEffect(() => {
@@ -22,7 +22,7 @@ function CommitDifference() {
   return (
     <>
       {!oldnewcode ? (
-        <h1>hi</h1>
+        <h1 className="bg-red-500 text-center">Code Difference Unavailable!</h1>
       ) : (
         <ReactDiffViewer
           oldValue={atob(oldnewcode.oldcode)}

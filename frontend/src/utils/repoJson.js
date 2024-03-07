@@ -6,7 +6,8 @@ async function fetchData() {
       withCredentials: true
     })
     return api.data;
-  } catch (error) {
+  } 
+  catch (error) {
     console.error("Error:", error.message);
     throw error;
   }
