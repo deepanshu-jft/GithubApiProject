@@ -40,7 +40,7 @@ function RepoComponent() {
               <div key={index}>
                 <Link
                   key={element.sha}
-                  className={`repo-component hover:bg-[#2e2b35] px-8 flex justify-between items-center min-h-8 text-wrap break-words w-full cursor-pointer dropdown-btn ${
+                  className={`repo-component hover:bg-[#2e2b35] px-8 flex justify-between items-center min-h-8 py-1 text-wrap break-all w-full cursor-pointer dropdown-btn ${
                     isOpen[index] ? "open" : ""
                   }`}
                   to={`/${params.userName}/dashboard/${params.repoName}/${element.sha}`}

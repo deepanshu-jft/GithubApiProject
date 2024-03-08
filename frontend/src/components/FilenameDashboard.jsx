@@ -46,7 +46,7 @@ function FilenameDashboard() {
               <div key={index}>
                 <Link
                   key={element.sha}
-                  className={`px-12 hover:bg-[#2e2b35] flex justify-between items-center min-h-8 text-wrap break-words cursor-pointerdropdown-btn ${
+                  className={`px-12 hover:bg-[#2e2b35] flex justify-between items-center min-h-8 py-1 text-wrap w-full break-all cursor-pointerdropdown-btn ${
                     isOpen[index] ? "open" : ""
                   }`}
                   to={`/${params.userName}/dashboard/${params.repoName}/${params.commitSha}/${element.filename}`}

@@ -16,19 +16,20 @@ function BufferPage() {
 
   useEffect(() => {
     ;(async function () {
-      const tkn = await axios
-        .get(`http://localhost:4000/api/auth/github/token`, {
+      const tkn = await axios.get(
+        `http://localhost:4000/api/auth/github/token`,
+        {
           withCredentials: true, //for cookie
-        })
-        .then((res) => res.data)
-      setToken(tkn)
+        }
+      )
+      const token = tkn.data
+      setToken(token)
 
-      const usr = await axios
-        .get(`http://localhost:4000/api/user`, {
+      const usr = await axios.get(`http://localhost:4000/api/user`, {
           withCredentials: true, //for cookie
         })
-        .then((res) => res.data)
-      setUser(usr)
+        const user = usr.data
+      setUser(user)
     })()
   }, [])
 
