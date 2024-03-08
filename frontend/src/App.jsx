@@ -1,6 +1,6 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import "./assets/styles/App.css"
-import BufferPage from "./components/BufferPage"
+import LoginPage from "./components/LoginPage"
 import CommitDifference from "./components/CommitDifference"
 import FilenameDashboard from "./components/FilenameDashboard"
 import RepoComponent from "./components/RepoComponent"
@@ -11,7 +11,7 @@ const App = () => {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <BufferPage />,
+      element: <LoginPage />,
       errorElement: <div>404 Not Found</div>,
     },
     {

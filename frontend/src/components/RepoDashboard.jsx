@@ -21,8 +21,8 @@ function RepoDashboard({ CodeDiff }) {
 
   return (
     <>
-      <div className="flex flex-col md:flex-row">
-        <div className="repo-list w-96 min-h-screen flex flex-col select-none border border-gray-700">
+      <div className="flex flex-col md:flex-row justify-start md:items-start">
+        <div className="repo-list min-h-screen w-1/4 flex flex-col select-none border border-gray-700">
           <h1 className="text-center border-b border-gray-700 text-xl py-1">
             Repo List
           </h1>
@@ -44,7 +44,7 @@ function RepoDashboard({ CodeDiff }) {
         </div>
         {CodeDiff && (
           <ReactDiffViewer
-            className="w-full"
+            className="w-3/4"
             oldValue={atob(CodeDiff.oldcode)}
             newValue={atob(CodeDiff.newcode)}
             splitView={true}

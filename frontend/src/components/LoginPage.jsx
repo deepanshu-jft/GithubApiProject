@@ -10,7 +10,7 @@ const gitHubRedirectURL = "http://localhost:4000/api/auth/github"
 const path = "/"
 const GITHUB_URL = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${gitHubRedirectURL}?path=${path}&scope=user:email`
 
-function BufferPage() {
+function LoginPage() {
   const [token, setToken] = useState()
   const [user, setUser] = useState()
 
@@ -26,9 +26,9 @@ function BufferPage() {
       setToken(token)
 
       const usr = await axios.get(`http://localhost:4000/api/user`, {
-          withCredentials: true, //for cookie
-        })
-        const user = usr.data
+        withCredentials: true, //for cookie
+      })
+      const user = usr.data
       setUser(user)
     })()
   }, [])
@@ -36,9 +36,9 @@ function BufferPage() {
   return (
     <>
       {!token || !user ? ( //ye error tha
-        <div className="display-content">
-          <div className="login-card">
-            <h2>Authenticate With</h2>
+        <div className="h-screen flex justify-center items-center">
+          <div className="login-card w-[500px] h-[500px] bg-white rounded-3xl flex flex-col items-center">
+            <h2 className="my-24 text-black text-4xl">Authenticate With</h2>
             <LoginButton
               whichSite="GitHub"
               whichColor="black"
@@ -50,13 +50,17 @@ function BufferPage() {
       ) : (
         <>
           <BuildComponent data={user} />
-          <Link to={`/${user.login}/dashboard`}>
-            <button className="repo-dashboard">Repository Dashboard</button>
-          </Link>
+          <div className="flex justify-center mt-12">
+            <Link to={`/${user.login}/dashboard`}>
+              <button className="p-2 text-4xl cursor-pointer bg-white text-black hover:bg-black hover:text-white">
+                Repository Dashboard
+              </button>
+            </Link>
+          </div>
         </>
       )}
     </>
   )
 }
 
-export default BufferPage
+export default LoginPage

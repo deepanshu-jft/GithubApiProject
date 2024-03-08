@@ -26,7 +26,7 @@ function BuildComponent({ data }) {
 
   return (
     <>
-      <h1 className="heading">
+      <h1 className="heading flex justify-center mb-12 text-[90px]">
         <span className="welcome">Welcome</span>
         <DisplayPageCardComponent data={data} displayData="name" />
       </h1>
@@ -34,9 +34,14 @@ function BuildComponent({ data }) {
         {arr.map((displayData, index) => (
           <div key={displayData} className="card">
             <div className="card-header">
-              <div className="title">{naming(displayData)}</div>
-              <div className="content">
-                <DisplayPageCardComponent data={data} displayData={displayData} />
+              <div className="text-2xl mb-4 text-[#7a7a8c]">
+                {naming(displayData)}
+              </div>
+              <div className="content break-all">
+                <DisplayPageCardComponent
+                  data={data}
+                  displayData={displayData}
+                />
               </div>
             </div>
           </div>
