@@ -1,30 +1,21 @@
 import React, { useEffect, useState } from "react"
 import { Link, Outlet, useParams } from "react-router-dom"
 import getFilename from "../utils/getFilename"
-import CommitDifference from "./CommitDifference"
-import { RiArrowDropDownLine } from "react-icons/ri"
-import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri"
 
 function FilenameDashboard() {
   const params = useParams()
   const [filename, setFilename] = useState(null)
   const [isOpen, setIsOpen] = useState(false)
-  const [dropdown, setDropdown] = useState(
-    new Array(getFilename.length).fill(false)
-  )
-
+  
   const toggleDropdown = (index) => {
     const updatedDropdowns = [...isOpen]
     for (let i = 0; i < updatedDropdowns.length; i++) {
       if (i != index) {
         updatedDropdowns[i] = false
-        dropdown[i] = false
       }
     }
     updatedDropdowns[index] = !updatedDropdowns[index]
-    dropdown[index] = !dropdown[index]
     setIsOpen(updatedDropdowns)
-    setDropdown(dropdown)
   }
 
   useEffect(() => {
@@ -62,14 +53,11 @@ function FilenameDashboard() {
                   onClick={() => toggleDropdown(index)}
                 >
                   {element.filename}
-                  <RiArrowDropDownLine className="text-2xl" />
                 </Link>
-
                 {isOpen[index] && <Outlet />}
               </div>
             ))}
           </div>
-          {/* <Outlet /> */}
         </div>
       )}
     </>

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useParams, Link, Outlet } from "react-router-dom"
 import commitJSON from "../utils/commitJSON"
-import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri"
 
 function RepoComponent() {
   const params = useParams()
@@ -48,13 +47,11 @@ function RepoComponent() {
                   onClick={() => toggleDropdown(index)}
                 >
                   {element.commit.message}
-                  <RiArrowDownSLine />
                 </Link>
                 {isOpen[index] && <Outlet />}
               </div>
             ))}
           </div>
-          {/* <Outlet /> */}
         </div>
       )}
     </>

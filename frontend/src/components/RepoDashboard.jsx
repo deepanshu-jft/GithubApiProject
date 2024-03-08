@@ -1,27 +1,20 @@
 import React, { useState } from "react"
 import { Link, Outlet, useParams } from "react-router-dom"
 import repoJson from "../utils/repoJson"
-import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri"
 
 function RepoDashboard() {
   const params = useParams()
   const [isOpen, setIsOpen] = useState(repoJson.map(() => false))
-  const [dropdown, setDropdown] = useState(
-    new Array(repoJson.length).fill(false)
-  )
 
   const toggleDropdown = (index) => {
     const updatedDropdowns = [...isOpen]
     for (let i = 0; i < updatedDropdowns.length; i++) {
       if (i != index) {
         updatedDropdowns[i] = false
-        dropdown[i] = false
       }
     }
     updatedDropdowns[index] = !updatedDropdowns[index]
-    dropdown[index] = !dropdown[index]
     setIsOpen(updatedDropdowns)
-    setDropdown(dropdown)
   }
 
   return (
@@ -42,7 +35,6 @@ function RepoDashboard() {
                 onClick={() => toggleDropdown(index)}
               >
                 {element.name}
-                {!dropdown[index] ? <RiArrowDownSLine /> : <RiArrowUpSLine />}
               </Link>
               {isOpen[index] && <Outlet />}
             </div>
