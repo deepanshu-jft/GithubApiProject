@@ -1,8 +1,10 @@
 import React, { useState } from "react"
 import { Link, Outlet, useParams } from "react-router-dom"
 import repoJson from "../utils/repoJson"
+import { withUser } from "./CodeContext"
+import ReactDiffViewer from "react-diff-viewer"
 
-function RepoDashboard() {
+function RepoDashboard({ CodeDiff }) {
   const params = useParams()
   const [isOpen, setIsOpen] = useState(repoJson.map(() => false))
 
@@ -19,8 +21,8 @@ function RepoDashboard() {
 
   return (
     <>
-      <div className="flex">
-        <div className="repo-list min-w-96 min-h-screen mt-12 flex flex-col select-none border border-gray-700">
+      <div className="flex flex-col md:flex-row">
+        <div className="repo-list min-w-96 md:w-96 min-h-screen flex flex-col select-none border border-gray-700">
           <h1 className="text-center border-b border-gray-700 text-xl py-1">
             Repo List
           </h1>
@@ -28,7 +30,7 @@ function RepoDashboard() {
             <div key={element.id}>
               <Link
                 key={element.id}
-                className={`px-4 hover:bg-[#2e2b35] flex justify-between items-center h-10 cursor-pointer dropdown-btn ${
+                className={`px-4 hover:bg-[#2e2b35] flex justify-between items-center min-h-10 text-wrap break-words cursor-pointer dropdown-btn ${
                   isOpen[index] ? "open" : ""
                 }`}
                 to={`/${params.userName}/dashboard/${element.name}`}
@@ -40,9 +42,18 @@ function RepoDashboard() {
             </div>
           ))}
         </div>
+        {CodeDiff && (
+          <ReactDiffViewer
+            className="w-full"
+            oldValue={atob(CodeDiff.oldcode)}
+            newValue={atob(CodeDiff.newcode)}
+            splitView={true}
+            disableWordDiff={true}
+          />
+        )}
       </div>
     </>
   )
 }
 
-export default RepoDashboard
+export default withUser(RepoDashboard)

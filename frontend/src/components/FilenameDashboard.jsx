@@ -6,7 +6,7 @@ function FilenameDashboard() {
   const params = useParams()
   const [filename, setFilename] = useState(null)
   const [isOpen, setIsOpen] = useState(false)
-  
+
   const toggleDropdown = (index) => {
     const updatedDropdowns = [...isOpen]
     for (let i = 0; i < updatedDropdowns.length; i++) {
@@ -46,7 +46,7 @@ function FilenameDashboard() {
               <div key={index}>
                 <Link
                   key={element.sha}
-                  className={`px-12 hover:bg-[#2e2b35] flex justify-between items-center h-8 text-wrap cursor-pointerdropdown-btn ${
+                  className={`px-12 hover:bg-[#2e2b35] flex justify-between items-center min-h-8 text-wrap break-words cursor-pointerdropdown-btn ${
                     isOpen[index] ? "open" : ""
                   }`}
                   to={`/${params.userName}/dashboard/${params.repoName}/${params.commitSha}/${element.filename}`}

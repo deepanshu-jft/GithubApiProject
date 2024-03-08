@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
-import ReactDiffViewer from "react-diff-viewer"
 import getDiffCode from "../utils/getDiffCode"
 import { useParams } from "react-router-dom"
+import { withUser } from "./CodeContext"
 
-function CommitDifference() {
+function CommitDifference({ setCodeDiff }) {
   const params = useParams()
   const [oldnewcode, setOldnewcode] = useState(null)
 
@@ -12,6 +12,7 @@ function CommitDifference() {
       try {
         const oldnewcode = await getDiffCode(params)
         setOldnewcode(oldnewcode)
+        setCodeDiff(oldnewcode)
       } catch (error) {
         console.error("Error fetching oldnewcode:", error)
       }
@@ -24,15 +25,10 @@ function CommitDifference() {
       {!oldnewcode ? (
         <h1 className="bg-red-500 text-center">Code Difference Unavailable!</h1>
       ) : (
-        <ReactDiffViewer
-          oldValue={atob(oldnewcode.oldcode)}
-          newValue={atob(oldnewcode.newcode)}
-          splitView={true}
-          disableWordDiff={true}
-        />
+        <div></div>
       )}
     </>
   )
 }
 
-export default CommitDifference
+export default withUser(CommitDifference)

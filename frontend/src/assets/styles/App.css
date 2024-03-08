@@ -5,11 +5,6 @@
   margin: 0;
 }
 body {
-  /* display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh; */
-
   background-color: #17141d;
   color: white;
   font-family: "DM Mono", monospace;
@@ -23,7 +18,6 @@ body {
 }
 .welcome {
   margin-right: 10px;
-  /* color: lightblue; */
   background: linear-gradient(90deg, #ff8a00, #e52e71);
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -34,7 +28,6 @@ body::-webkit-scrollbar {
   height: 10px;
 }
 body::-webkit-scrollbar-thumb {
-  /* background: linear-gradient(90deg, #ff8a00, #e52e71); */
   background: #201c29;
   border-radius: 10px;
   box-shadow: inset 2px 2px 2px hsla(0, 0%, 100%, 0.25),
@@ -45,10 +38,6 @@ body::-webkit-scrollbar-track {
 }
 
 .container {
-  /* display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
-  width: 80vw; */
   display: flex;
   padding: 3rem;
   overflow-x: scroll;
@@ -59,7 +48,6 @@ body::-webkit-scrollbar-track {
   height: 10px;
 }
 .container::-webkit-scrollbar-thumb {
-  /* background: linear-gradient(90deg, #ff8a00, #e52e71); */
   background: #201c29;
   border-radius: 10px;
   box-shadow: inset 2px 2px 2px hsla(0, 0%, 100%, 0.25),
@@ -70,15 +58,6 @@ body::-webkit-scrollbar-track {
 }
 
 .card {
-  /* padding: 20px;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
-  background: black;
-  font-size: 40px; */
-
   height: 350px;
   width: 400px;
   min-width: 250px;
@@ -119,22 +98,14 @@ body::-webkit-scrollbar-track {
 }
 
 .content {
-  /* font-size: 30px;
-  margin: 0.25rem 0 auto;
-  text-decoration: none;
-  color: inherit;
-  border: 0;
-  display: inline-block;
-  cursor: pointer; */
-
-  font-size: 40px; /* Adjust the font size to your preference */
+  font-size: 40px;
   margin: 0.25rem 0 auto;
   text-decoration: none;
   color: inherit;
   border: 0;
   display: inline-block;
   cursor: pointer;
-  max-width: 100%; /* Limit the maximum width of the content */
+  max-width: 100%; 
   word-wrap: break-word;
 }
 
@@ -147,7 +118,6 @@ body::-webkit-scrollbar-track {
 }
 
 .display-content {
-  /* background: red; */
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -161,7 +131,6 @@ body::-webkit-scrollbar-track {
   border-radius: 54px;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
 }
 
@@ -172,7 +141,6 @@ body::-webkit-scrollbar-track {
 }
 
 .repo-dashboard {
-  /* border: 200px solid linear-gradient(90deg, #ff8a00, #e52e71); */
   border-radius: 20px;
   padding: 10px;
   text-shadow: 0 0 5px #ffffff;
@@ -182,5 +150,3 @@ body::-webkit-scrollbar-track {
   background: white;
   color: black;
 }
-/* .repo-dashboard:hover {
-} */
